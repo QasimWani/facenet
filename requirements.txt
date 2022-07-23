@@ -9,5 +9,5 @@ torch==1.11.0
 tqdm==4.64.0
 opencv-python>=4.1.0
 flask==1.1.1
-tensorboard==1.14.0
+tensorboard
 future==0.17.1
