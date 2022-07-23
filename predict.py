@@ -6,6 +6,7 @@ import time
 import requests
 import json
 from io import BytesIO
+import numpy as np
 
 
 # only for downloading models.
@@ -69,17 +70,15 @@ class FaceNet:
         """Get L2 norm b/w two embeddings"""
         return torch.norm(embeddings_1 - embeddings_2).item()
 
-
 def load_model():
     model = FaceNet()
     return model
 
-def run(model:FaceNet):
+def run(model:FaceNet, data:list):
     """ generates embeddings for a given image """
-    fp = open("./data/data.json", "r")
-    data = json.load(fp)
-    frame = data["data"]
-
-    embedding = model.get_embedding(frame).numpy()
-    result = {"data": embedding.decode("utf-8")}
-    return result
+    # convert numpty array to PIL image
+    frame = Image.fromarray(np.array(data).astype(np.uint8))
+    embedding = model.get_embedding(frame)
+    if isinstance(embedding, torch.Tensor):
+        embedding = embedding.squeeze(0).detach().numpy().tolist()
+    return embedding
