@@ -6,10 +6,9 @@ requests==2.26.0
 setuptools==62.3.2
 tensorflow==2.9.1
 torch==1.11.0
-torchvision==0.12.0
+scivision==0.12.0
 tqdm==4.64.0
 opencv-python>=4.1.0
 flask==1.1.1
-scipy==1.3.0
 tensorboard==1.14.0
 future==0.17.1
